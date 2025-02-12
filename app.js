@@ -1,11 +1,14 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
 const PORT = 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+const routes = require("./routes/index");
+
+app.set("view engine", "pug");
+app.use(bodyParser.json());
+app.use(routes);
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port localhost://${PORT}`);
+  console.log(`Server is running on port http://localhost:${PORT}`);
 });
