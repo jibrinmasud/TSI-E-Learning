@@ -1,3 +1,6 @@
+const User = require("../models/User");
 exports.signup = async (req, res) => {
-  res.json({ asdf: "asdffggfdf" });
+  const user = await User.create(req.body);
+
+  res.json({ user });
 };
