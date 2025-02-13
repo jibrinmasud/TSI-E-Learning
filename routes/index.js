@@ -8,8 +8,8 @@ router.get("/", (req, res) => {
 });
 router.use("/book", bookRouter);
 
-router.all("/*", (req, res) => {
-  res.render("404");
-});
+// router.all("/*", (req, res) => {
+//   res.render("404");
+// });
 
 module.exports = router;
