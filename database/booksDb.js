@@ -1,11 +1,8 @@
-const { MongoClient } = require("mongodb");
-const url = "mongodb://localhost:27017";
+const { default: mongoose } = require("mongoose");
 
-const client = new MongoClient(url);
-const dbName = "booksDb";
 async function connectdb() {
-  await client.connect();
-  const db = client.db(dbName);
-  return db;
+  await mongoose.connect("mongodb://localhost:27017/booksDb");
+  return mongoose.connection;
 }
+
 module.exports = connectdb;
