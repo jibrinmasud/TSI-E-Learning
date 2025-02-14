@@ -1,18 +1,26 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const PORT = 3000;
 const routes = require("./routes/index");
-const connectdb = require("./database/booksDb");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
+dotenv.config();
+const PORT = process.env.PORT || 5000;
+const MONGOURL = process.env.MONGO_URL;
 
 app.set("view engine", "pug");
 
 app.use(bodyParser.json());
 app.use(routes);
 
-connectdb().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server is running on port http://localhost:${PORT}`);
+mongoose
+  .connect(MONGOURL)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
   });
-});

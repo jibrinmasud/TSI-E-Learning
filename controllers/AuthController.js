@@ -1,6 +1,9 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const dotenv = require("dotenv");
+dotenv.config();
+const JWTSECRET = process.env.JWT_SECRET;
 var jwt = require("jsonwebtoken");
 exports.signup = async (req, res) => {
   const password = bcrypt.hashSync(req.body.password, saltRounds);
@@ -16,6 +19,6 @@ exports.login = async (req, res) => {
   if (!bcrypt.compareSync(req.body.password, user.password)) {
     return res.status(401).json({ message: "Incorrect Email or  password" });
   }
-  const token = jwt.sign({ user }, );
+  const token = jwt.sign({ user }, JWTSECRET);
   res.json({ user, access_token: token });
 };
