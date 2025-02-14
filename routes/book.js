@@ -6,7 +6,7 @@ const authmiddleware = require("../middleware/authmiddleware");
 bookRouter
   .use(authmiddleware)
   .route("/")
-  .get(BookController.index)
+  .get(BookController.show)
   .post(BookController.create);
 
 bookRouter
