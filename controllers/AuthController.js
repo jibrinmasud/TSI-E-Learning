@@ -16,6 +16,6 @@ exports.login = async (req, res) => {
   if (!bcrypt.compareSync(req.body.password, user.password)) {
     return res.status(401).json({ message: "Incorrect Email or  password" });
   }
-  const token = jwt.sign({ user }, "fake=jwt-secrete");
+  const token = jwt.sign({ user }, );
   res.json({ user, access_token: token });
 };
