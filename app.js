@@ -4,8 +4,10 @@ const bodyParser = require("body-parser");
 const routes = require("./routes/index");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const connectdb = require("./database/booksDb");
 
 dotenv.config();
+connectdb();
 const PORT = process.env.PORT || 5000;
 const MONGOURL = process.env.MONGO_URL;
 
